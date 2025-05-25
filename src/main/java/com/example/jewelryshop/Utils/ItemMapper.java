@@ -1,11 +1,13 @@
 package com.example.jewelryshop.Utils;
 
+import com.example.jewelryshop.Dto.ItemPagingDto;
 import com.example.jewelryshop.Dto.ItemRequestDto;
 import com.example.jewelryshop.Dto.ItemResponseDto;
 import com.example.jewelryshop.Entity.ItemEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ItemMapper {
@@ -32,10 +34,17 @@ public class ItemMapper {
         return itemEntity;
     }
 
-    public List<ItemResponseDto> toUserResponseDto(List<ItemEntity> itemEntities) {
-        return itemEntities
+    public ItemPagingDto toItemPagingDto(Page<ItemEntity> itemEntities) {
+        ItemPagingDto itemPagingDto = new ItemPagingDto();
+        itemPagingDto.setItems(itemEntities
+                .getContent()
                 .stream()
                 .map(this::toItemResponseDto)
-                .toList();
+                .collect(Collectors.toList()));
+        itemPagingDto.setTotalItems(itemEntities.getNumberOfElements());
+        itemPagingDto.setTotalPages(itemEntities.getTotalPages());
+        itemPagingDto.setPageSize(itemEntities.getSize());
+        itemPagingDto.setCurrentPage(itemEntities.getNumber());
+        return itemPagingDto;
     }
 }

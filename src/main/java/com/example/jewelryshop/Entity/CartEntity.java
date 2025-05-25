@@ -11,14 +11,14 @@ import org.hibernate.annotations.ColumnDefault;
 import java.util.List;
 
 @Entity
-@Table(schema = "cart_entity")
+@Table(name = "cart_entity")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ColumnDefault("0")
     private int quantity;

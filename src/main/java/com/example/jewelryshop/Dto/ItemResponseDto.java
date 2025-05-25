@@ -1,5 +1,6 @@
 package com.example.jewelryshop.Dto;
 
+import com.example.jewelryshop.Entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ public class ItemResponseDto {
     private String description;
     private int price;
     private int quantity;
-    private String category;
+    private Category category;
     private Double rating;
     private List<Byte[]> images;
 }

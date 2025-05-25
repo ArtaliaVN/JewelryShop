@@ -1,19 +1,16 @@
 package com.example.jewelryshop.Utils;
 
+import com.example.jewelryshop.Dto.UserPagingDto;
 import com.example.jewelryshop.Dto.UserRequestDto;
 import com.example.jewelryshop.Dto.UserResponseDto;
 import com.example.jewelryshop.Entity.UserEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@Data
-@NoArgsConstructor
 public class UserMapper {
 
     public UserResponseDto toUserResponseDto(UserEntity userEntity) {
@@ -37,10 +34,17 @@ public class UserMapper {
         return userEntity;
     }
 
-    public List<UserResponseDto> toUserResponseDto(List<UserEntity> userEntities) {
-        return userEntities
+    public UserPagingDto toUserPagingDto(Page<UserEntity> userEntities) {
+        UserPagingDto userPagingDto = new UserPagingDto();
+        userPagingDto.setItems(userEntities
+                .getContent()
                 .stream()
                 .map(this::toUserResponseDto)
-                .toList();
+                .collect(Collectors.toList()));
+        userPagingDto.setTotalItems(userEntities.getNumberOfElements());
+        userPagingDto.setTotalPages(userEntities.getTotalPages());
+        userPagingDto.setPageSize(userEntities.getSize());
+        userPagingDto.setCurrentPage(userEntities.getNumber());
+        return userPagingDto;
     }
 }

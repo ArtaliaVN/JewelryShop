@@ -8,14 +8,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 @Entity
-@Table(schema = "banner_entity")
+@Table(name = "banner_entity")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class BannerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @DateTimeFormat
     private LocalDate initializeDate;

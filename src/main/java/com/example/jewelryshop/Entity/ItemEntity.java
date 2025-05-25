@@ -12,14 +12,14 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(schema = "item_entity")
+@Table(name = "item_entity")
 @AllArgsConstructor
 @NoArgsConstructor
 public class ItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     @Size(max = 50)

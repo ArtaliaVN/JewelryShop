@@ -1,7 +1,7 @@
 package com.example.jewelryshop.Repo;
 
-import com.example.jewelryshop.Entity.Category;
+import com.example.jewelryshop.Entity.CategoryEntity;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CategoryRepo extends CrudRepository<Category, Integer> {
+public interface CategoryRepo extends CrudRepository<CategoryEntity, Integer> {
 }

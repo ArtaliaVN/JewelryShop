@@ -11,7 +11,6 @@ public class CartMapper {
         cartResponseDto.setQuantity(cartEntity.getQuantity());
         cartResponseDto.setPriceSum(cartEntity.getPriceSum());
         cartResponseDto.setOwner(cartEntity.getOwner());
-        cartResponseDto.setOwnerId(cartEntity.getOwnerId());
         cartResponseDto.setItems(cartEntity.getItems());
         return cartResponseDto;
     }
