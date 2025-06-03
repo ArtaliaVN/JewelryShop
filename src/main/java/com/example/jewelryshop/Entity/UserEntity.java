@@ -38,8 +38,21 @@ public class UserEntity {
     @NotBlank
     private String lastName;
 
-    private List<ApplicationRole> roles;
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(
+            name = "role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<RoleEntity> roles;
 
     private List<String> ratedItem;
+
+    @OneToOne
+    @JoinColumn(name = "image_id")
+    private ImageEntity image;
 
 }

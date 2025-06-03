@@ -31,5 +31,6 @@ public class CartEntity {
     )
     private UserEntity owner;
 
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<ItemEntity> items;
 }

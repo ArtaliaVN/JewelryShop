@@ -97,6 +97,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>jewelryServerApp</finalName>
 	</build>
 
 </project>

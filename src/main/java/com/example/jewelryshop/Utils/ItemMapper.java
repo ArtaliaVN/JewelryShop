@@ -3,7 +3,10 @@ package com.example.jewelryshop.Utils;
 import com.example.jewelryshop.Dto.ItemPagingDto;
 import com.example.jewelryshop.Dto.ItemRequestDto;
 import com.example.jewelryshop.Dto.ItemResponseDto;
+import com.example.jewelryshop.Entity.Category;
 import com.example.jewelryshop.Entity.ItemEntity;
+import com.example.jewelryshop.Repo.CategoryRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -12,13 +15,19 @@ import java.util.stream.Collectors;
 @Component
 public class ItemMapper {
 
+    private final CategoryRepo categoryRepo;
+
+    public ItemMapper(CategoryRepo categoryRepo) {
+        this.categoryRepo = categoryRepo;
+    }
+
     public ItemResponseDto toItemResponseDto(ItemEntity itemEntity) {
         ItemResponseDto itemResponseDto = new ItemResponseDto();
         itemResponseDto.setId(itemEntity.getId());
         itemResponseDto.setName(itemEntity.getName());
         itemResponseDto.setPrice(itemEntity.getPrice());
         itemResponseDto.setQuantity(itemEntity.getQuantity());
-        itemResponseDto.setCategory(itemEntity.getCategory());
+        itemEntity.setCategory(categoryRepo.findByCategoryName(itemResponseDto.getCategory()));
         itemResponseDto.setDescription(itemEntity.getDescription());
         itemResponseDto.setRating(itemEntity.getRating());
         return itemResponseDto;
@@ -29,7 +38,7 @@ public class ItemMapper {
         itemEntity.setName(itemResponseDto.getName());
         itemEntity.setPrice(itemResponseDto.getPrice());
         itemEntity.setQuantity(itemResponseDto.getQuantity());
-        itemEntity.setCategory(itemResponseDto.getCategory());
+        itemEntity.setCategory(categoryRepo.findByCategoryName(itemResponseDto.getCategory()));
         itemEntity.setDescription(itemResponseDto.getDescription());
         return itemEntity;
     }

@@ -6,22 +6,19 @@ import com.example.jewelryshop.Entity.ItemEntity;
 import com.example.jewelryshop.Dto.ItemPagingDto;
 import com.example.jewelryshop.Repo.ItemRepo;
 import com.example.jewelryshop.Utils.ItemMapper;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class ItemService {
     @Autowired
-    private final ItemRepo itemRepo;
+    private ItemRepo itemRepo;
 
     @Autowired
-    private final ItemMapper itemMapper;
+    private ItemMapper itemMapper;
 
     public void post(ItemRequestDto requestDto) {
         itemRepo.save(itemMapper.toItemEntity(requestDto));

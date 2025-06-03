@@ -20,11 +20,11 @@ public class BannerEntity {
     @DateTimeFormat
     private LocalDate initializeDate;
 
-    private Byte[] image;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private ImageEntity image;
 
     @OneToOne
-    @JoinColumn(
-            name = "item_id"
-    )
+    @JoinColumn(name = "item_id")
     private ItemEntity item;
 }

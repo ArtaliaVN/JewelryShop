@@ -4,6 +4,7 @@ import com.example.jewelryshop.Dto.ItemPagingDto;
 import com.example.jewelryshop.Dto.ItemRequestDto;
 import com.example.jewelryshop.Service.ItemService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/item")
 public class ItemDatabaseController {
 
-    private final ItemService itemService;
-
-    public ItemDatabaseController(ItemService itemService) {
-        this.itemService = itemService;
-    }
+    @Autowired
+    private ItemService itemService;
 
     @PostMapping("/post")
     public ResponseEntity<?> postItem(@Valid @RequestBody ItemRequestDto requestDto) {

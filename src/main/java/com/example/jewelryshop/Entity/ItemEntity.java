@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
-
 import java.util.List;
 
 @Data
@@ -34,9 +33,17 @@ public class ItemEntity {
     @ColumnDefault("0")
     private int quantity;
 
-    private List<Byte[]> images;
+    @OneToMany
+    private List<ImageEntity> images;
 
-    private Category category;
+    @ManyToOne(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "category_id"
+    )
+    private CategoryEntity category;
 
     @ColumnDefault("0")
     private Double rating;

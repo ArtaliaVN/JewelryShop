@@ -2,6 +2,7 @@ package com.example.jewelryshop.Controller;
 
 import com.example.jewelryshop.Dto.UserRequestDto;
 import com.example.jewelryshop.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,11 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserDatabaseController {
 
-    private final UserService userService;
-
-    public UserDatabaseController(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/post")
     public ResponseEntity<?> postUser(@RequestBody UserRequestDto userRequestDto) {

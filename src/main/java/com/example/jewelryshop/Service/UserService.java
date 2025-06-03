@@ -15,13 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class UserService {
     @Autowired
-    private final UserRepo userRepo;
+    private UserRepo userRepo;
 
     @Autowired
-    private final UserMapper userMapper;
+    private UserMapper userMapper;
 
     public ResponseEntity<UserResponseDto> post(UserRequestDto requestDto) {
         userRepo.save(userMapper.toUserEntity(requestDto));
